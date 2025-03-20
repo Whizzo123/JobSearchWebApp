@@ -22,10 +22,10 @@ export function JobTable({jobListings}: {jobListings: Job[]}){
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
 
-    let distinctJobTypes = Array.from(new Set(jobListings.map((job: Job) => { return job.job_type; })));
+    const distinctJobTypes = Array.from(new Set(jobListings.map((job: Job) => { return job.job_type; })));
     const[jobTypeFilters, setJobTypeFilters] = useState<Filter[]>(distinctJobTypes.map((filterName: string) => {return {name: filterName, use: true}}));
 
-    let jobTypeFilterChanged = (filters: Filter[], id: number) => {
+    const jobTypeFilterChanged = (filters: Filter[], id: number) => {
         const updatedList = filters.map((filter, index) => {
             if (index === id) {
               return { ...filter, use: !filter.use };
@@ -44,7 +44,7 @@ export function JobTable({jobListings}: {jobListings: Job[]}){
         ]);
       };
 
-    let jobTypeFilterBox = <FilterBox title="JobType" filters={jobTypeFilters} onChanged={jobTypeFilterChanged}/>;
+    const jobTypeFilterBox = <FilterBox title="JobType" filters={jobTypeFilters} onChanged={jobTypeFilterChanged}/>;
 
     const table = useReactTable({
       data: jobListings,
