@@ -22,7 +22,6 @@ async function QueryData(queryParams: string = ""): Promise<JobListings>{
 export default async function Home() {
 
     const listings: JobListings = (await QueryData())
-    console.log(listings);
 
     return (
       <div>
